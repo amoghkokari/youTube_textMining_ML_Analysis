@@ -71,6 +71,7 @@ def get_video_details(youtube, video_list):
         
         #assigning default nan values for all
         tags=np.nan
+        tag_count=np.nan
         
         for video in data['items']:
             title=video['snippet']['title']
