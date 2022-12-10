@@ -3,3 +3,4 @@ cred.py
 __pycache__
 .venv
 figures
+static

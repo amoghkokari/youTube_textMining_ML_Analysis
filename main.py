@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request
+import os
 app = Flask(__name__)
 import urllib.request
 from data_extraction import extract_data
@@ -19,7 +20,9 @@ def result():
       gt_viz, df = generate_visualizations(df,channel_id)
       ml_results = ml_classifiers(df)
       print(ml_results)
-      return df.head().to_html(classes='table table-stripped')
+      hists = create_figUrl(channel_id)
+      return render_template('result.html', hlst = hists)
+      # return df.head().to_html(classes='table table-stripped')
       
 def parse(res):
     page = urllib.request.urlopen(res)
@@ -46,6 +49,13 @@ def ml_classifiers(df):
    X_train, X_test, y_train, y_test = pp_main(df)
    Tmodels, Fmetrices = clf_main(X_train, X_test, y_train, y_test)
    return Tmodels, Fmetrices
+
+def create_figUrl(channel_id):
+   hists = os.listdir('static/'+channel_id)
+   hists = [file for file in hists]
+   for i in range(len(hists)):
+      hists[i] = 'static/'+channel_id+"/"+hists[i]
+   return hists
 
 if __name__ == '__main__':
    app.run(debug = True)
