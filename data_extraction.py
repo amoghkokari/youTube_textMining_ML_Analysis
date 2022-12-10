@@ -6,8 +6,6 @@ from googleapiclient.discovery import build
 import numpy as np
 import pandas as pd
 import os
-import seaborn as sns
-import matplotlib.pyplot as plt
 
 # Function to get the channels statistics
 # It will also contain the upload playlist ID we can use to grab videos.
@@ -109,11 +107,11 @@ def create_dataframe(video_data):
     return df
 
 def extract_data(channel_id):
-    if os.path.isfile(channel_id+".csv"):
-        df = pd.read_csv(channel_id+".csv")
+    if os.path.isfile("data/"+channel_id+".csv"):
+        df = pd.read_csv("data/"+channel_id+".csv")
     else:
         youtube = build('youtube', 'v3', developerKey=cred.api_key)
         video_data = get_channel_stat(channel_id,youtube)
         df = create_dataframe(video_data)
-        df.to_csv(channel_id+".csv",index=False)
+        df.to_csv("data/"+channel_id+".csv",index=False)
     return df
