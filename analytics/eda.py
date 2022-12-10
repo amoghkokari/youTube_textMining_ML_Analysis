@@ -1,6 +1,7 @@
 import pandas as pd
 from wordcloud import WordCloud,STOPWORDS
 import matplotlib.pyplot as plt
+import os
 
 def generate_wordcloud(df,key,channel_id):
     real_job=df[key].values
@@ -11,6 +12,8 @@ def generate_wordcloud(df,key,channel_id):
     plt.imshow(wordcloud, interpolation = 'bilinear')
     plt.axis('off')
     pname = key+"_"+channel_id+'.png'
+    if not os.path.exists("figures/"):
+        os.mkdir("figures/")
     plt.savefig("figures/"+pname)
     plt.close()
     return pname
