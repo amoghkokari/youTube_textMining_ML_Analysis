@@ -19,21 +19,21 @@ def result():
       df, channel_id = process_result(result["ch1"])
       gt_viz, df = generate_visualizations(df,channel_id)
       ml_results = ml_classifiers(df)
-      print(ml_results)
       hists = create_figUrl(channel_id)
-      return render_template('result.html', hlst = hists)
+      return render_template('result.html', hlst = hists, ml= ml_results[1])
       # return df.head().to_html(classes='table table-stripped')
-      
+
+@app.route('/predict', methods=['GET', 'POST'])
+def predict():
+   if request.method == 'POST':
+      result = request.form
+      print(result)
+   return render_template('predict.html') 
+
 def parse(res):
     page = urllib.request.urlopen(res)
     html = BeautifulSoup(page.read(),"html.parser")
     return html.find_all('meta',itemprop="channelId")[0].get('content')
-
-# def get_html(df):
-#     html = df.to_html()
-#     text_file = open("templates/result.html", "w")
-#     text_file.write(html)
-#     text_file.close()
 
 def process_result(result):
     channel_id = parse(result)
