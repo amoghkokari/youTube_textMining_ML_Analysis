@@ -9,5 +9,29 @@
         <p> Title </p>
         <img src={{hlst[2]}} alt="Title" width="250" height="250">
     </div>
+    <h1>Machine Learning Results</h1>
+    <div>
+        <table>
+        <tr>
+            <th>Name</th>
+            <th>Accuracy</th>
+            <th>Precision</th>
+            <th>Recall</th>
+            <th>F1 Score</th>
+        </tr>
+         {% for project in ml %}
+        <tr>
+            <td>{{ ml[project].m_name }} </td>
+            <td>{{ ml[project].accuracy }} </td>
+            <td>{{ ml[project].precision }} </td>
+            <td>{{ ml[project].recall }} </td>
+            <td>{{ ml[project].f1score }} </td>
+        </tr>      
+        {% endfor %}
+        </table>
+    </div> 
+
+    <div> Wanna predict how well your video will do?</div>
+    <a href="{{ url_for('predict') }}">Predict</a>
     </body>
 </html> 
