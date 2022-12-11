@@ -28,6 +28,7 @@ def result():
 
 @app.route('/predict', methods=['GET', 'POST'])
 def predict():
+   preds = ""
    if request.method == 'POST':
       result = request.form
       text = result["title"] +" "+ result["desc"]
@@ -36,7 +37,8 @@ def predict():
       X = pP.fit_vectorizer(cred.vect,pdf["text"])
       preds = pred_success(X.toarray(),cred.channel_id)
       print(preds)
-   return render_template('predict.html') 
+
+   return render_template('predict.html', predn = preds) 
 
 def parse(res):
     page = urllib.request.urlopen(res)

@@ -5,9 +5,45 @@
         <label for="title" style="display:flex">Channel Title</label>
         <input type="text" id="title" name="title" size="62"><br><br>
         <label for="desc" style="display:flex">Channel Description</label>
-        <textarea id="desc" name="desc" rows="4" cols="50">
-            </textarea><br><br>
+        <textarea id="desc" name="desc" rows="4" cols="50"></textarea><br><br>
         <input type="submit" value="Submit">
       </form>
+      <style>
+        table {
+          border:1px solid #b3adad;
+          border-collapse:collapse;
+          padding:5px;
+        }
+        table th {
+          border:1px solid #b3adad;
+          padding:5px;
+          background: #f0f0f0;
+          color: #313030;
+        }
+        table td {
+                border:1px solid #b3adad;
+          text-align:center;
+          padding:5px;
+          background: #ffffff;
+          color: #313030;
+        }
+      </style>
+      <div>
+        {% if predn %}
+        <table>
+        <tr>
+            <th>Classifier Name     </th>
+            <th>Value    </th>
+        </tr>
+        {% for pred in predn %}
+        <tr>
+            <td>{{ pred }}  </td>
+            <td>{{ predn[pred][0] }} </td>
+        </tr>      
+        {% endfor %}
+        </table>
+        {% endif %}
+    </div> 
+     
    </body>
 </html>
