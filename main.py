@@ -1,12 +1,15 @@
 from flask import Flask, render_template, request
 import os
+import cred
+import pandas as pd
 app = Flask(__name__)
 import urllib.request
 from data_extraction import extract_data
 from bs4 import BeautifulSoup
 from analytics.eda import main as eda_main
-from analytics.preProcessing import main as pp_main
+import analytics.preProcessing as pP
 from analytics.classifiers import clf_main
+from analytics.classifiers import pred_success
 
 @app.route('/')
 def student():
@@ -18,7 +21,7 @@ def result():
       result = request.form
       df, channel_id = process_result(result["ch1"])
       gt_viz, df = generate_visualizations(df,channel_id)
-      ml_results = ml_classifiers(df)
+      ml_results = ml_classifiers(df,channel_id)
       hists = create_figUrl(channel_id)
       return render_template('result.html', hlst = hists, ml= ml_results[1])
       # return df.head().to_html(classes='table table-stripped')
@@ -27,7 +30,12 @@ def result():
 def predict():
    if request.method == 'POST':
       result = request.form
-      print(result)
+      text = result["title"] +" "+ result["desc"]
+      ctext = pP.clean(text)
+      pdf = pd.DataFrame(data={"text":[ctext]})
+      X = pP.fit_vectorizer(cred.vect,pdf["text"])
+      preds = pred_success(X.toarray(),cred.channel_id)
+      print(preds)
    return render_template('predict.html') 
 
 def parse(res):
@@ -37,6 +45,7 @@ def parse(res):
 
 def process_result(result):
     channel_id = parse(result)
+    cred.channel_id = channel_id
     pro_df = extract_data(channel_id)
     return pro_df, channel_id
 
@@ -45,9 +54,9 @@ def generate_visualizations(df,channel_id):
    sucess = 1
    return sucess, df_1
 
-def ml_classifiers(df):
-   X_train, X_test, y_train, y_test = pp_main(df)
-   Tmodels, Fmetrices = clf_main(X_train, X_test, y_train, y_test)
+def ml_classifiers(df,channel_id):
+   X_train, X_test, y_train, y_test = pP.main(df)
+   Tmodels, Fmetrices = clf_main(X_train, X_test, y_train, y_test,channel_id)
    return Tmodels, Fmetrices
 
 def create_figUrl(channel_id):
