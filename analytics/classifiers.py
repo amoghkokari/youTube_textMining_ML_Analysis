@@ -58,21 +58,21 @@ def clf_main(X_train, X_test, y_train, y_test,channel_id):
     LGBMdct, LGBMmodel = mlOps(X_train, X_test, y_train, y_test, model, name)
     print(name+" done")
     joblib_file = direc+name+".pkl"
-    joblib.dump(NBmodel, joblib_file)
+    joblib.dump(LGBMmodel, joblib_file)
 
     name = "XGBClassifier"
     model = XGBClassifier()
     XGBdct, XGBmodel = mlOps(X_train, X_test, y_train, y_test, model, name)
     print(name+" done")
     joblib_file = direc+name+".pkl"
-    joblib.dump(NBmodel, joblib_file)
+    joblib.dump(XGBmodel, joblib_file)
 
     name = "AdaBoostClassifier"
     model = AdaBoostClassifier()
     AdaBdct, AdaBmodel = mlOps(X_train, X_test, y_train, y_test, model, name)
     print(name+" done")
     joblib_file = direc+name+".pkl"
-    joblib.dump(NBmodel, joblib_file)
+    joblib.dump(AdaBmodel, joblib_file)
 
     mdct = {"NBmodel":NBmodel,"LGBMmodel":LGBMmodel,"XGBmodel":XGBmodel,"AdaBmodel":AdaBmodel}
     metrices_dct = {"NBdct":NBdct,"LGBMdct":LGBMdct,"XGBdct":XGBdct,"AdaBdct":AdaBdct}
