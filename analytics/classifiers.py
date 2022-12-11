@@ -10,11 +10,11 @@ def mlOps(X_train, X_test, y_train, y_test, model, name):
     dct = {"m_name":name}
     model.fit(X_train,y_train)
     y_pred = model.predict(X_test)
-    dct["accuracy"] = accuracy_score(y_test,y_pred)
+    dct["accuracy"] = round(accuracy_score(y_test,y_pred)*100,2)
     weighted_prf = precision_recall_fscore_support(y_test,y_pred,average='weighted')
-    dct["precision"] = weighted_prf[0]
-    dct["recall"] = weighted_prf[1]
-    dct["f1score"] = weighted_prf[2]
+    dct["precision"] = round(weighted_prf[0]*100, 2)
+    dct["recall"] = round(weighted_prf[1]*100, 2)
+    dct["f1score"] = round(weighted_prf[2]*100, 2)
     return dct, model
 
 def clf_main(X_train, X_test, y_train, y_test):

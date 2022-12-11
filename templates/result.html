@@ -1,23 +1,49 @@
 <html>
     <body>
-        <h1> Here are word clouds for  </h1>
+        <h1>Word Clouds on all the video data present in the Channel</h1>
         <div style="display:flex; justify-content: center;">
-        <p> Description </p>
-        <img src={{hlst[0]}} alt="Description" width="250" height="250">
-        <p> Tags </p>
-        <img src={{hlst[1]}} alt="Tags" width="250" height="250">
-        <p> Title </p>
-        <img src={{hlst[2]}} alt="Title" width="250" height="250">
+        <table>
+            <tr>
+                <th>Description</th>
+                <th>Tags</th>
+                <th>Title</th>
+            </tr>
+            <tr>
+                <td><img src={{hlst[0]}} alt="Description" width="460" height="250"></td>
+                <td><img src={{hlst[1]}} alt="Tags" width="460" height="250"></td>
+                <td><img src={{hlst[2]}} alt="Title" width="460" height="250"></td>
+            </tr>
+        </table>
     </div>
-    <h1>Machine Learning Results</h1>
+    <style>
+		table {
+			border:1px solid #b3adad;
+			border-collapse:collapse;
+			padding:5px;
+		}
+		table th {
+			border:1px solid #b3adad;
+			padding:5px;
+			background: #f0f0f0;
+			color: #313030;
+		}
+		table td {
+            border:1px solid #b3adad;
+			text-align:center;
+			padding:5px;
+			background: #ffffff;
+			color: #313030;
+		}
+	</style>
+    <h1>ML Algorithms and analysis results</h1>
     <div>
         <table>
         <tr>
-            <th>Name</th>
-            <th>Accuracy</th>
-            <th>Precision</th>
-            <th>Recall</th>
-            <th>F1 Score</th>
+            <th>Classifier_Name     </th>
+            <th>Accuracy    </th>
+            <th>Precision   </th>
+            <th>Recall      </th>
+            <th>F1_Score    </th>
         </tr>
          {% for project in ml %}
         <tr>
@@ -31,7 +57,9 @@
         </table>
     </div> 
 
-    <div> Wanna predict how well your video will do?</div>
-    <a href="{{ url_for('predict') }}">Predict</a>
+    <h2> Click below to predict how many likes your video might get</h2>
+    <form action="{{ url_for('predict') }}">
+        <button type="submit">Click me</button>
+     </form>
     </body>
 </html> 
