@@ -8,6 +8,7 @@ from data_extraction import extract_data
 from bs4 import BeautifulSoup
 from analytics.eda import main as eda_main
 import analytics.preProcessing as pP
+import analytics.spark_ml as spark_ml
 from analytics.classifiers import clf_main
 from analytics.classifiers import pred_success
 
@@ -22,6 +23,8 @@ def result():
       df, channel_id = process_result(result["ch1"])
       gt_viz, df = generate_visualizations(df,channel_id)
       ml_results = ml_classifiers(df,channel_id)
+      ml_spark = spark_ml.spark_main(channel_id)
+      print(ml_spark)
       hists = create_figUrl(channel_id)
       return render_template('result.html', hlst = hists, ml= ml_results[1])
       # return df.head().to_html(classes='table table-stripped')
