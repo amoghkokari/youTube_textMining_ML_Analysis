@@ -6,7 +6,6 @@ import pandas as pd
 from pyspark.ml import Pipeline
 from pyspark.sql import SparkSession
 
-
 def process_model(data,algo,name):
     tokenizer=Tokenizer(inputCol="text",outputCol="words")
     remover=StopWordsRemover(inputCol="words",outputCol="filtered_words")
@@ -31,7 +30,7 @@ def process_model(data,algo,name):
     evaluator_recall=MulticlassClassificationEvaluator(labelCol="label_ind",metricName="recallByLabel")
     evaluator=MulticlassClassificationEvaluator(labelCol="label_ind",metricName="accuracy")
     evaluator_f1=MulticlassClassificationEvaluator(labelCol="label_ind",metricName="f1")
-    
+
     dct = {"m_name":name}
     dct["precision"]=round(evaluator_precision.evaluate(predictions)*100, 2)
     dct["recall"]=round(evaluator_recall.evaluate(predictions)*100, 2)
