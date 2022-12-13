@@ -7,7 +7,7 @@ from pyspark.ml import Pipeline
 from pyspark.sql import SparkSession
 
 
-def process_model(data,algo):
+def process_model(data,algo,name):
     tokenizer=Tokenizer(inputCol="text",outputCol="words")
     remover=StopWordsRemover(inputCol="words",outputCol="filtered_words")
     countVec=CountVectorizer(inputCol="filtered_words",outputCol="features")
@@ -32,7 +32,7 @@ def process_model(data,algo):
     evaluator=MulticlassClassificationEvaluator(labelCol="label_ind",metricName="accuracy")
     evaluator_f1=MulticlassClassificationEvaluator(labelCol="label_ind",metricName="f1")
     
-    dct = {}
+    dct = {"m_name":name}
     dct["precision"]=round(evaluator_precision.evaluate(predictions)*100, 2)
     dct["recall"]=round(evaluator_recall.evaluate(predictions)*100, 2)
     dct["accuracy"]=round(evaluator.evaluate(predictions)*100, 2)
@@ -62,11 +62,11 @@ def spark_main(channel_id):
     sdf = read_csv_spark(channel_id)
     data = process_spark_df(sdf)
     lr=LogisticRegression(maxIter=10,regParam=0.3,labelCol="label_ind")
-    lr_m = process_model(data,lr)
+    lr_m = process_model(data,lr,"LogisticRegression")
     gbt = GBTClassifier(labelCol="label_ind", featuresCol="idf_features", maxIter=10)
-    gbt_m = process_model(data,gbt)
+    gbt_m = process_model(data,gbt,"GBTClassifier")
     nb = NaiveBayes(labelCol="label_ind", featuresCol="idf_features",smoothing=1.0, modelType="multinomial")
-    nb_m = process_model(data,nb)
+    nb_m = process_model(data,nb,"NaiveBayes")
 
     metrices_dct = {"LogisticRegression":lr_m,"GBTClassifier":gbt_m,"naiveBayes":nb_m}
 
