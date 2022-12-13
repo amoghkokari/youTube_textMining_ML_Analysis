@@ -33,10 +33,10 @@ def process_model(data,algo):
     evaluator_f1=MulticlassClassificationEvaluator(labelCol="label_ind",metricName="f1")
     
     dct = {}
-    dct["precision"]=evaluator_precision.evaluate(predictions)
-    dct["recall"]=evaluator_recall.evaluate(predictions)
-    dct["accuracy"]=evaluator.evaluate(predictions)
-    dct["f1"]=evaluator_f1.evaluate(predictions)
+    dct["precision"]=round(evaluator_precision.evaluate(predictions)*100, 2)
+    dct["recall"]=round(evaluator_recall.evaluate(predictions)*100, 2)
+    dct["accuracy"]=round(evaluator.evaluate(predictions)*100, 2)
+    dct["f1"]=round(evaluator_f1.evaluate(predictions)*100, 2)
 
     return dct
 
