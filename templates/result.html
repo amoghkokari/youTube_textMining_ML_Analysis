@@ -34,7 +34,7 @@
 			background: #ffffff;
 			color: #313030;
 		}
-	</style>
+	</style>  
     <h1>ML Algorithms and analysis results</h1>
     <div>
         <table>
@@ -56,7 +56,40 @@
         {% endfor %}
         </table>
     </div> 
-
+    <h1>Spark analysis results</h1>
+    <div>
+        <table>
+        <tr>
+            <th>Classifier_Name     </th>
+            <th>Accuracy    </th>
+            <th>Precision   </th>
+            <th>Recall      </th>
+            <th>F1_Score    </th>
+        </tr>
+         {% for mls in mlspark %}
+        <tr>
+            <td>{{ mlspark[mls].m_name }} </td>
+            <td>{{ mlspark[mls].accuracy }} </td>
+            <td>{{ mlspark[mls].precision }} </td>
+            <td>{{ mlspark[mls].recall }} </td>
+            <td>{{ mlspark[mls].f1 }} </td>
+        </tr>      
+        {% endfor %}
+        </table>
+    </div> 
+    <h2> Run time Analysis</h2>
+    <div>
+        <table>
+        <tr>
+            <th>Pandas</th>
+            <th>Spark</th>
+        </tr>      
+        <tr>
+            <td>{{ extime["pd_ml"] }} </td>
+            <td>{{ extime["spark_ml"] }} </td>
+        </tr>      
+        </table>
+    </div> 
     <h2> Click below to predict how many likes your video might get</h2>
     <form action="{{ url_for('predict') }}">
         <button type="submit">Click me</button>
