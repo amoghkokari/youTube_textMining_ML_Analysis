@@ -40,10 +40,10 @@
         <table>
         <tr>
             <th>Classifier_Name     </th>
-            <th>Accuracy    </th>
-            <th>Precision   </th>
-            <th>Recall      </th>
-            <th>F1_Score    </th>
+            <th>Accuracy (%)   </th>
+            <th>Precision (%)  </th>
+            <th>Recall (%)     </th>
+            <th>F1_Score (%)    </th>
         </tr>
          {% for project in ml %}
         <tr>
@@ -61,10 +61,10 @@
         <table>
         <tr>
             <th>Classifier_Name     </th>
-            <th>Accuracy    </th>
-            <th>Precision   </th>
-            <th>Recall      </th>
-            <th>F1_Score    </th>
+            <th>Accuracy (%)    </th>
+            <th>Precision (%)  </th>
+            <th>Recall (%)      </th>
+            <th>F1_Score (%)    </th>
         </tr>
          {% for mls in mlspark %}
         <tr>
@@ -81,8 +81,8 @@
     <div>
         <table>
         <tr>
-            <th>Pandas</th>
-            <th>Spark</th>
+            <th>Pandas (seconds)</th>
+            <th>Spark (seconds)</th>
         </tr>      
         <tr>
             <td>{{ extime["pd_ml"] }} </td>
