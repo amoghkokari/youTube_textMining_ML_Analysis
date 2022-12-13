@@ -30,8 +30,6 @@ def result():
       spark_start_time = time.time()
       ml_spark = spark_ml.spark_main(channel_id)
       exe_time["spark_ml"]=(round(time.time()-spark_start_time,2))
-      # print(ml_spark)
-      # print(exe_time)
       hists = create_figUrl(channel_id)
       return render_template('result.html', hlst = hists, ml= ml_results[1], extime=exe_time, mlspark=ml_spark)
 
