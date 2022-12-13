@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request
+import time
 import os
 import cred
 import pandas as pd
@@ -19,12 +20,18 @@ def student():
 @app.route('/result',methods = ['POST', 'GET'])
 def result():
    if request.method == 'POST':
+      exe_time = {}
       result = request.form
       df, channel_id = process_result(result["ch1"])
       gt_viz, df = generate_visualizations(df,channel_id)
+      ml_start_time = time.time()
       ml_results = ml_classifiers(df,channel_id)
+      exe_time["pd_ml"]=(time.time()-ml_start_time)
+      spark_start_time = time.time()
       ml_spark = spark_ml.spark_main(channel_id)
+      exe_time["spark_ml"]=(time.time()-spark_start_time)
       print(ml_spark)
+      print(exe_time)
       hists = create_figUrl(channel_id)
       return render_template('result.html', hlst = hists, ml= ml_results[1])
       # return df.head().to_html(classes='table table-stripped')
