@@ -46,6 +46,7 @@ def read_csv_spark(channel_id):
         .config('spark.ui.port', '4050')\
         .getOrCreate()
     df = pd.read_csv("data/"+channel_id+".csv")
+    df = df[['title','description','tags','like_count']]
     df = df.dropna(axis= 0, how= 'any')
     return spark.createDataFrame(df)
 
