@@ -21,18 +21,25 @@ def student():
 def result():
    if request.method == 'POST':
       exe_time = {}
+      class_size = {}
+
       result = request.form
       df, channel_id = process_result(result["ch1"])
       gt_viz, df1, df = generate_visualizations(df,channel_id)
-      print(df.shape)
+
       ml_start_time = time.time()
       ml_results = ml_classifiers(df,channel_id)
       exe_time["pd_ml"]=(round(time.time()-ml_start_time,2))
+
       spark_start_time = time.time()
       ml_spark = spark_ml.spark_main(channel_id)
       exe_time["spark_ml"]=(round(time.time()-spark_start_time,2))
+
+      class_size["low"] = len(df[df["like_count_1"]==0])
+      class_size["high"] = len(df[df["like_count_1"]==1])
+
       hists = create_figUrl(channel_id)
-      return render_template('result.html', hlst = hists, ml= ml_results[1], extime=exe_time, mlspark=ml_spark, dshape=df.shape)
+      return render_template('result.html', hlst=hists, ml=ml_results, extime=exe_time, mlspark=ml_spark, dshape=df.shape, csize=class_size)
 
 @app.route('/predict', methods=['GET', 'POST'])
 def predict():
@@ -67,7 +74,7 @@ def generate_visualizations(df,channel_id):
 def ml_classifiers(df,channel_id):
    X_train, X_test, y_train, y_test = pP.main(df)
    Tmodels, Fmetrices = clf_main(X_train, X_test, y_train, y_test,channel_id)
-   return Tmodels, Fmetrices
+   return Fmetrices
 
 def create_figUrl(channel_id):
    hists = os.listdir('static/'+channel_id)

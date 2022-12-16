@@ -10,8 +10,10 @@ import os
 
 def mlOps(X_train, X_test, y_train, y_test, model, name):
     dct = {"m_name":name}
+
     model.fit(X_train,y_train)
     y_pred = model.predict(X_test)
+
     dct["accuracy"] = round(accuracy_score(y_test,y_pred)*100,2)
     weighted_prf = precision_recall_fscore_support(y_test,y_pred,average='weighted')
     dct["precision"] = round(weighted_prf[0]*100, 2)
@@ -24,10 +26,13 @@ def pred_success(X,channel_id):
 
     joblib_file = direc+"GaussianNB"+".pkl"
     GaussianNB = joblib.load(joblib_file)
+
     joblib_file = direc+"LGBMClassifier"+".pkl"
     LGBMClassifier = joblib.load(joblib_file)
+
     joblib_file = direc+"XGBClassifier"+".pkl"
     XGBClassifier = joblib.load(joblib_file)
+    
     joblib_file = direc+"AdaBoostClassifier"+".pkl"
     AdaBoostClassifier = joblib.load(joblib_file)
 
