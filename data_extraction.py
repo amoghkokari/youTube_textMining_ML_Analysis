@@ -104,7 +104,7 @@ def create_dataframe(video_data):
     df["dislike_count"] = pd.to_numeric(df["dislike_count"])
     df["comment_count"] = pd.to_numeric(df["comment_count"])
     # reaction used later add up likes + dislikes + comments
-    df["reactions"] = df["like_count"] + df["dislike_count"] + df["comment_count"] + df["comment_count"]
+    df["reactions"] = df["like_count"] + df["dislike_count"] + df["comment_count"]
     return df
 
 def extract_data(channel_id):
