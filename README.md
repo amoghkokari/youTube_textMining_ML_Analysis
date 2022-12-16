@@ -25,7 +25,5 @@ The application is a mere demonstration of a decentralized text analysis and pre
 ~ Matplotlib
 ~ Wordcloud
 ~ Joblib
-~ Xgboost
-~ Lightgbm
 
 Recommendation, collaboration and improvments requests are encourage, please feel free to raise an issue and/or contact us directly.
