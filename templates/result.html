@@ -90,6 +90,17 @@
         </tr>      
         </table>
     </div> 
+    <h2>Data shape</h2>
+    <div>
+        <table>
+        <tr>
+            <th>Rows x Cols</th>
+        </tr>      
+        <tr>
+            <td>{{ dshape }} </td>
+        </tr>      
+        </table>
+    </div> 
     <h2> Click below to predict how many likes your video might get</h2>
     <form action="{{ url_for('predict') }}">
         <button type="submit">Click me</button>

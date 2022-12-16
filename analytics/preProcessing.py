@@ -42,11 +42,11 @@ def fit_vectorizer(vectorizer,text):
     return vectorizer.transform(text)
 
 def main(df):
-    df['text'] = df['title'] + df['description'] + df['tags_1']
-    kol = ["published","tag_count","view_count","dislike_count","comment_count","tags","title_length","reactions"]
-    df = df.drop(kol, axis=1)
+    # df['text'] = df['title'] + df['description'] + df['tags_1']
+    # kol = ["published","tag_count","view_count","dislike_count","comment_count","tags","title_length","reactions"]
+    # df = df.drop(kol, axis=1)
     df["text"]=df["text"].apply(clean)
-    df["tags_1"]=df["tags_1"].apply(clean)
+    # df["tags_1"]=df["tags_1"].apply(clean)
     vectorizer = vectorize(df["text"])
     vectorizer.fit(df["text"])
     cred.vect = vectorizer

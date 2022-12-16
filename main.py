@@ -23,7 +23,8 @@ def result():
       exe_time = {}
       result = request.form
       df, channel_id = process_result(result["ch1"])
-      gt_viz, df = generate_visualizations(df,channel_id)
+      gt_viz, df1, df = generate_visualizations(df,channel_id)
+      print(df.shape)
       ml_start_time = time.time()
       ml_results = ml_classifiers(df,channel_id)
       exe_time["pd_ml"]=(round(time.time()-ml_start_time,2))
@@ -31,7 +32,7 @@ def result():
       ml_spark = spark_ml.spark_main(channel_id)
       exe_time["spark_ml"]=(round(time.time()-spark_start_time,2))
       hists = create_figUrl(channel_id)
-      return render_template('result.html', hlst = hists, ml= ml_results[1], extime=exe_time, mlspark=ml_spark)
+      return render_template('result.html', hlst = hists, ml= ml_results[1], extime=exe_time, mlspark=ml_spark, dshape=df.shape)
 
 @app.route('/predict', methods=['GET', 'POST'])
 def predict():
@@ -59,9 +60,9 @@ def process_result(result):
     return pro_df, channel_id
 
 def generate_visualizations(df,channel_id):
-   df_1, tag, title, disc = eda_main(df,channel_id)
+   df, df_1, tag, title, disc = eda_main(df,channel_id)
    sucess = 1
-   return sucess, df_1
+   return sucess, df, df_1
 
 def ml_classifiers(df,channel_id):
    X_train, X_test, y_train, y_test = pP.main(df)
