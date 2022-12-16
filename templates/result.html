@@ -81,7 +81,7 @@
     <div>
         <table>
         <tr>
-            <th>Pandas (seconds)</th>
+            <th>Normal (seconds)</th>
             <th>Spark (seconds)</th>
         </tr>      
         <tr>
@@ -90,14 +90,18 @@
         </tr>      
         </table>
     </div> 
-    <h2>Data shape</h2>
+    <h2>Data shape and class size</h2>
     <div>
         <table>
         <tr>
             <th>Rows x Cols</th>
+            <th>Lows (0)</th>
+            <th>Highs (1)</th>
         </tr>      
         <tr>
             <td>{{ dshape }} </td>
+            <td>{{ csize["low"] }} </td>
+            <td>{{ csize["high"] }} </td>
         </tr>      
         </table>
     </div> 

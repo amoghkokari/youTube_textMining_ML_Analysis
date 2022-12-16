@@ -34,11 +34,14 @@ def main(df, channel_id):
 
     df["tags_1"]= df["tags"].apply(lambda x: x[1:-1])
     df["like_count_1"] = pd.qcut(df["like_count"], 2, labels=[0,1]).astype("int64")
+
     if not os.path.exists("static/"):
         os.mkdir("static/")
     if not os.path.exists("static/"+channel_id+"/"):
         os.mkdir("static/"+channel_id+"/")
+
     tags_fig = generate_wordcloud(df,"tags_1",channel_id)
     title_fig = generate_wordcloud(df,"title",channel_id)
     desp_fig = generate_wordcloud(df,"description",channel_id)
+    
     return df, df1, tags_fig, title_fig, desp_fig

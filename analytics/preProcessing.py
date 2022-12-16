@@ -45,12 +45,16 @@ def main(df):
     # df['text'] = df['title'] + df['description'] + df['tags_1']
     # kol = ["published","tag_count","view_count","dislike_count","comment_count","tags","title_length","reactions"]
     # df = df.drop(kol, axis=1)
-    df["text"]=df["text"].apply(clean)
     # df["tags_1"]=df["tags_1"].apply(clean)
+
+    df["text"]=df["text"].apply(clean)
     vectorizer = vectorize(df["text"])
     vectorizer.fit(df["text"])
     cred.vect = vectorizer
+    
     X = fit_vectorizer(vectorizer,df["text"])
     y = df["like_count_1"]
+
     X_train, X_test, y_train, y_test = train_test_split(X.toarray(), y, test_size=0.20, random_state=42)
+
     return X_train, X_test, y_train, y_test
