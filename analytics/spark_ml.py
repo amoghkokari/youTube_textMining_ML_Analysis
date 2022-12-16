@@ -61,10 +61,13 @@ def process_spark_df(sdf):
 def spark_main(channel_id):
     sdf = read_csv_spark(channel_id)
     data = process_spark_df(sdf)
+
     lr=LogisticRegression(maxIter=10,regParam=0.3,labelCol="label_ind")
     lr_m = process_model(data,lr,"LogisticRegression")
+
     gbt = GBTClassifier(labelCol="label_ind", featuresCol="idf_features", maxIter=10)
     gbt_m = process_model(data,gbt,"GBTClassifier")
+    
     nb = NaiveBayes(labelCol="label_ind", featuresCol="idf_features",smoothing=1.0, modelType="multinomial")
     nb_m = process_model(data,nb,"NaiveBayes")
 
