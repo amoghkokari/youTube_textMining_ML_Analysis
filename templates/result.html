@@ -34,80 +34,111 @@
 			background: #ffffff;
 			color: #313030;
 		}
+        .container{
+            display: flex;
+            justify-content: center;
+            text-align: center;
+            align-items: center;
+        }
+        .inside-container{
+            padding:5px
+        }
+        .button{
+            font-size: 16px;
+            cursor: pointer;
+            background: springgreen;
+            border-radius: 4px;
+            padding: 5px;
+        }
 	</style>
-    <h1>ML Algorithms and analysis results</h1>
-    <div>
-        <table>
-        <tr>
-            <th>Classifier_Name     </th>
-            <th>Accuracy (%)   </th>
-            <th>Precision (%)  </th>
-            <th>Recall (%)     </th>
-            <th>F1_Score (%)    </th>
-        </tr>
-         {% for project in ml %}
-        <tr>
-            <td>{{ ml[project].m_name }} </td>
-            <td>{{ ml[project].accuracy }} </td>
-            <td>{{ ml[project].precision }} </td>
-            <td>{{ ml[project].recall }} </td>
-            <td>{{ ml[project].f1score }} </td>
-        </tr>      
-        {% endfor %}
-        </table>
-    </div> 
-    <h1>Spark analysis results</h1>
-    <div>
-        <table>
-        <tr>
-            <th>Classifier_Name     </th>
-            <th>Accuracy (%)    </th>
-            <th>Precision (%)  </th>
-            <th>Recall (%)      </th>
-            <th>F1_Score (%)    </th>
-        </tr>
-         {% for mls in mlspark %}
-        <tr>
-            <td>{{ mlspark[mls].m_name }} </td>
-            <td>{{ mlspark[mls].accuracy }} </td>
-            <td>{{ mlspark[mls].precision }} </td>
-            <td>{{ mlspark[mls].recall }} </td>
-            <td>{{ mlspark[mls].f1 }} </td>
-        </tr>      
-        {% endfor %}
-        </table>
-    </div> 
-    <h2> Run time Analysis</h2>
-    <div>
-        <table>
-        <tr>
-            <th>Normal (seconds)</th>
-            <th>Spark (seconds)</th>
-        </tr>      
-        <tr>
-            <td>{{ extime["pd_ml"] }} </td>
-            <td>{{ extime["spark_ml"] }} </td>
-        </tr>      
-        </table>
-    </div> 
-    <h2>Data shape and class size</h2>
-    <div>
-        <table>
-        <tr>
-            <th>Rows x Cols</th>
-            <th>Lows (0)</th>
-            <th>Highs (1)</th>
-        </tr>      
-        <tr>
-            <td>{{ dshape }} </td>
-            <td>{{ csize["low"] }} </td>
-            <td>{{ csize["high"] }} </td>
-        </tr>      
-        </table>
-    </div> 
-    <h2> Click below to predict how many likes your video might get</h2>
-    <form action="{{ url_for('predict') }}">
-        <button type="submit">Click me</button>
-     </form>
+    <div class="container">
+        <div class="inside-container"> 
+            <h1>ML Algorithms and Analysis Results</h1>
+            <div>
+                <table>
+                <tr>
+                    <th>Classifier Name     </th>
+                    <th>Accuracy (%)   </th>
+                    <th>Precision (%)  </th>
+                    <th>Recall (%)     </th>
+                    <th>F1_Score (%)    </th>
+                </tr>
+                {% for project in ml %}
+                <tr>
+                    <td>{{ ml[project].m_name }} </td>
+                    <td>{{ ml[project].accuracy }} </td>
+                    <td>{{ ml[project].precision }} </td>
+                    <td>{{ ml[project].recall }} </td>
+                    <td>{{ ml[project].f1score }} </td>
+                </tr>      
+                {% endfor %} 
+                </table>
+            </div> 
+        </div>
+       <div class="inside-container">
+        <h1>Spark Analysis Results</h1>
+        <div>
+            <table>
+            <tr>
+                <th>Classifier Name     </th>
+                <th>Accuracy (%)    </th>
+                <th>Precision (%)  </th>
+                <th>Recall (%)      </th>
+                <th>F1_Score (%)    </th>
+            </tr>
+            {% for mls in mlspark %}
+            <tr>
+                <td>{{ mlspark[mls].m_name }} </td>
+                <td>{{ mlspark[mls].accuracy }} </td>
+                <td>{{ mlspark[mls].precision }} </td>
+                <td>{{ mlspark[mls].recall }} </td>
+                <td>{{ mlspark[mls].f1 }} </td>
+            </tr>      
+            {% endfor %}
+            </table>
+        </div> 
+       </div>
+    </div>
+   
+   <div class="container">
+    <div class="inside-container">
+        <h2> Run time Analysis</h2>
+        <div>
+            <table>
+            <tr>
+                <th>Normal (seconds)</th>
+                <th>Spark (seconds)</th>
+            </tr>      
+            <tr>
+                <td>{{ extime["pd_ml"] }} </td>
+                <td>{{ extime["spark_ml"] }} </td>        
+            </tr>      
+            </table>
+        </div> 
+    </div>
+    <div class="inside-container">
+        <h2>Data shape and class size</h2>
+        <div>
+            <table>
+            <tr>
+                <th>Rows x Cols</th>
+                <th>Lows (0)</th>
+                <th>Highs (1)</th>
+            </tr>      
+            <tr>
+                <td>{{ dshape }} </td>
+                <td>{{ csize["low"] }} </td>
+                <td>{{ csize["high"] }} </td>
+            </tr>      
+            </table>
+        </div> 
+    </div>
+</div>
+   
+   
+    <h2 style="display:flex"> Click below to predict how many likes your video might get: <form action="{{ url_for('predict') }}" style=" padding-left: 10px;">
+        <button type="submit" class="button">Click Me</button>
+    </form></h2>
+    
     </body>
 </html> 
