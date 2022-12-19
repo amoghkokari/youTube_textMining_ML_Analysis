@@ -51,7 +51,6 @@ def predict():
       pdf = pd.DataFrame(data={"text":[ctext]})
       X = pP.fit_vectorizer(cred.vect,pdf["text"])
       preds = pred_success(X.toarray(),cred.channel_id)
-      print(preds)
 
    return render_template('predict.html', predn = preds) 
 
