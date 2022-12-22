@@ -26,4 +26,24 @@ The application is a mere demonstration of a decentralized text analysis and pre
 ~ Wordcloud
 ~ Joblib
 
-Recommendation, collaboration and improvments requests are encourage, please feel free to raise an issue and/or contact us directly.
+# WebApp Screenshots (Sample)
+Screen 1 (Taking user input as Youtube Channel URL)
+
+<img src="https://github.com/amoghkokari/youTube_textMining_ML_Analysis/blob/master/WebAppScreenShots/First.png">
+
+
+Screen 2 (Displaying the Channel Analysis)
+
+<img src="https://github.com/amoghkokari/youTube_textMining_ML_Analysis/blob/master/WebAppScreenShots/Second.png">
+
+
+Screen 3 (Taking user input as title and discription for prediction)
+
+<img src="https://github.com/amoghkokari/youTube_textMining_ML_Analysis/blob/master/WebAppScreenShots/Third.png">
+
+
+Screen 4 (Displaying the prediction given by each ML algorithm)
+
+<img src="https://github.com/amoghkokari/youTube_textMining_ML_Analysis/blob/master/WebAppScreenShots/Fourth.png">
+
+## Recommendation, collaboration and improvments requests are encouraged, please feel free to raise an issue and/or contact us directly.
