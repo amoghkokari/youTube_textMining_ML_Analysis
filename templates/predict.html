@@ -1,14 +1,30 @@
 <html>
    <body>
-    <h1>Enter Youtube Channel Title and Description</h1>
+    <div style="text-align: center">
+    <h1>Enter YouTube Video Title and Description</h1>
       <form action = "http://127.0.0.1:5000/predict" method = "POST">
-        <label for="title" style="display:flex">Channel Title</label>
-        <input type="text" id="title" name="title" size="62"><br><br>
-        <label for="desc" style="display:flex">Channel Description</label>
+        <label for="title" >Video Title </label>
+        <input type="text" id="title" name="title" size="70"><br><br>
+        <label for="desc" >Video Description </label>
         <textarea id="desc" name="desc" rows="4" cols="50"></textarea><br><br>
         <input type="submit" value="Submit">
       </form>
+      </div>
       <style>
+       label {
+	display: block;
+	padding-left: 15px;
+	text-indent: -15px;
+}
+
+input {
+	padding: 0;
+	margin: 0;
+	vertical-align: bottom;
+	position: relative;
+	top: -1px;
+	*overflow: hidden;
+}
         table {
           border:1px solid #b3adad;
           border-collapse:collapse;
@@ -26,9 +42,14 @@
           padding:5px;
           background: #ffffff;
           color: #313030;
+          
+        }
+        .pred-container{
+          display: flex;
+          justify-content: center;
         }
       </style>
-      <div>
+      <div class="pred-container">
         {% if predn %}
         <table>
         <tr>
