@@ -19,14 +19,14 @@ def student():
 
 @app.route('/result',methods = ['POST', 'GET'])
 def result():
+   global channel_name
    if request.method == 'POST':
       exe_time = {}
       class_size = {}
 
       result = request.form
       df, channel_id = process_result(result["ch1"])
-      name=result.to_dict().get('ch1')
-      channel_name=name.split("/")[-1]
+      channel_name=result.to_dict().get('ch1').split("/")[-1]
       gt_viz, df1, df = generate_visualizations(df,channel_id)
 
       ml_start_time = time.time()
@@ -39,7 +39,6 @@ def result():
 
       class_size["low"] = len(df[df["like_count_1"]==0])
       class_size["high"] = len(df[df["like_count_1"]==1])
-
       hists = create_figUrl(channel_id)
       return render_template('result.html', hlst=hists, ml=ml_results, extime=exe_time, mlspark=ml_spark, dshape=df.shape, csize=class_size, channel_name=channel_name)
 
@@ -53,8 +52,7 @@ def predict():
       pdf = pd.DataFrame(data={"text":[ctext]})
       X = pP.fit_vectorizer(cred.vect,pdf["text"])
       preds = pred_success(X.toarray(),cred.channel_id)
-
-   return render_template('predict.html', predn = preds) 
+   return render_template('predict.html', predn = preds, channel_name=channel_name) 
 
 def parse(res):
     page = urllib.request.urlopen(res)
