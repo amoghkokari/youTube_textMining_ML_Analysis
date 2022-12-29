@@ -5,7 +5,6 @@ The application is a mere demonstration of a decentralized text analysis and pre
 - api_key = "your api key from youtube api"
 - channel_id = ""
 - vect = ""
-- channel_name = ""
 2) Install all libraries from requirements.txt (pip install -r /path/to/requirements.txt)
 3) From terminal go to installed directory
 - cd {your pulled file directory}
