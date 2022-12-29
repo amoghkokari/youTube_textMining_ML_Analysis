@@ -35,12 +35,12 @@ Screen 1 (Taking user input as Youtube Channel URL)
 
 Screen 2 (Displaying the Channel Analysis)
 
-<img src="https://github.com/amoghkokari/youTube_textMining_ML_Analysis/blob/master/WebAppScreenShots/Second.png">
+<img src="https://github.com/amoghkokari/youTube_textMining_ML_Analysis/blob/master/WebAppScreenShots/Fifth.png">
 
 
-Screen 3 (Taking user input as title and discription for prediction)
+Screen 3 (Taking user input as title and description for prediction)
 
-<img src="https://github.com/amoghkokari/youTube_textMining_ML_Analysis/blob/master/WebAppScreenShots/Third.png">
+<img src="https://github.com/amoghkokari/youTube_textMining_ML_Analysis/blob/master/WebAppScreenShots/seventh.png">
 
 
 Screen 4 (Displaying the prediction given by each ML algorithm)
