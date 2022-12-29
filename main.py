@@ -25,8 +25,7 @@ def result():
 
       result = request.form
       df, channel_id = process_result(result["ch1"])
-      channel_name=result.to_dict().get('ch1').split("/")[-1]
-      cred.channel_name = channel_name
+      cred.channel_name=result.to_dict().get('ch1').split("/")[-1]
       gt_viz, df1, df = generate_visualizations(df,channel_id)
 
       ml_start_time = time.time()
