@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-  helloworld:
+  bigdata:
     build: ./main.py
     ports: 
       - 5001:3080
