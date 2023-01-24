@@ -1,0 +1,60 @@
+blocks:
+- all_upstream_blocks_executed: true
+  configuration: {}
+  downstream_blocks:
+  - etl_text_data
+  executor_config: null
+  executor_type: local_python
+  language: python
+  name: load_youtube_channel_data
+  status: executed
+  type: data_loader
+  upstream_blocks: []
+  uuid: load_youtube_channel_data
+- all_upstream_blocks_executed: true
+  configuration: {}
+  downstream_blocks: []
+  executor_config: null
+  executor_type: local_python
+  language: python
+  name: etl_text_data
+  status: executed
+  type: transformer
+  upstream_blocks:
+  - load_youtube_channel_data
+  uuid: etl_text_data
+- all_upstream_blocks_executed: true
+  configuration: {}
+  downstream_blocks:
+  - bar_chart_for_silent_night_1674547655482
+  executor_config: null
+  executor_type: local_python
+  language: python
+  name: silent night
+  status: executed
+  type: data_exporter
+  upstream_blocks:
+  - etl_text_data
+  uuid: silent_night
+data_integration: null
+name: green leaf
+type: python
+uuid: green_leaf
+widgets:
+- all_upstream_blocks_executed: true
+  configuration:
+    chart_style: vertical
+    chart_type: bar chart
+    width_percentage: '1'
+    x: x
+    y: y
+  downstream_blocks: []
+  executor_config: null
+  executor_type: local_python
+  language: python
+  name: bar chart for silent_night 1674547655482
+  status: executed
+  type: chart
+  upstream_blocks:
+  - silent_night
+  uuid: bar_chart_for_silent_night_1674547655482
