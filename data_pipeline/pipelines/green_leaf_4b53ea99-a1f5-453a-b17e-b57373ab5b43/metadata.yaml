@@ -1,0 +1,30 @@
+blocks:
+- all_upstream_blocks_executed: true
+  configuration: {}
+  downstream_blocks:
+  - etl_text_data
+  executor_config: null
+  executor_type: local_python
+  language: python
+  name: load_youtube_channel_data
+  status: updated
+  type: data_loader
+  upstream_blocks: []
+  uuid: load_youtube_channel_data
+- all_upstream_blocks_executed: false
+  configuration: {}
+  downstream_blocks: []
+  executor_config: null
+  executor_type: local_python
+  language: python
+  name: etl_text_data
+  status: executed
+  type: transformer
+  upstream_blocks:
+  - load_youtube_channel_data
+  uuid: etl_text_data
+data_integration: null
+name: green leaf
+type: python
+uuid: green_leaf_4b53ea99-a1f5-453a-b17e-b57373ab5b43
+widgets: []
