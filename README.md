@@ -27,6 +27,9 @@ The application is a mere demonstration of a decentralized text analysis and pre
 ~ Wordcloud
 ~ Joblib
 
+# Video
+https://www.youtube.com/watch?v=AowljMakD-Q
+
 # WebApp Screenshots (Sample)
 Screen 1 (Taking user input as Youtube Channel URL)
 
